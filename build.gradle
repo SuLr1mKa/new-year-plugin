@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+}
+
+group = 'me.suprime'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "spigotmc-repo"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+}
+
+dependencies {
+    compileOnly files("C:/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar")
+    compileOnly files("C:/ProtocolLib.jar")
+
+
+//    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+//    implementation group: 'com.zaxxer', name: 'HikariCP', version: '2.3.2'
+
+    compileOnly "org.projectlombok:lombok:1.18.22"
+    annotationProcessor "org.projectlombok:lombok:1.18.22"
+
+    implementation "it.unimi.dsi:fastutil:8.5.6"
+}
+
+tasks.withType(JavaCompile) {
+    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    options.encoding = "UTF-8"
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}

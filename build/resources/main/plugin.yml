@@ -1,0 +1,11 @@
+name: NewYear
+version: '1.0-SNAPSHOT'
+main: me.suprime.newyearplugin.NewYearPlugin
+api-version: '1.8'
+author: Suplimka
+
+depend:
+  - ProtocolLib
+
+commands:
+  snow:
